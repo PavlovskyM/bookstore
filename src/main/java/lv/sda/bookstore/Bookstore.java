@@ -19,4 +19,16 @@ public class Bookstore {
     public List<Book> getBookshelf(){
         return bookshelf;
     }
+    public List<Book> searchBookByTitle(String query){
+
+        List<Book> foundBooks = new ArrayList<>();
+
+        for (Book book : bookshelf){
+            if(book.getTitle().contains(query)){
+                System.out.println(book.getTitle());
+                foundBooks.add(book);
+            }
+        }
+        return foundBooks;
+    }
 }

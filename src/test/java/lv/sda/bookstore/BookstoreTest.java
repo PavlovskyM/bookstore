@@ -3,6 +3,7 @@ package lv.sda.bookstore;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,5 +33,18 @@ public class BookstoreTest {
         bookstore.removeBook("7890");
 
         assertEquals(0, bookstore.getBookshelf().size());
+    }
+    @Test
+    public void testSearchForABookByTitle(){
+        Bookstore bookstore = new Bookstore();
+
+        bookstore.addBook(new Book("Project Hail Mary", "Andy Weir", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135204"));
+        bookstore.addBook(new Book("Klara and the Sun", "Kazuo Ishiguro", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593318171"));
+        bookstore.addBook(new Book("Effortless", "Greg McKeown", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135648"));
+        bookstore.addBook(new Book("Gold Diggers", "Sanjena Sathian", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9781984882035"));
+
+        List<Book> foundBooks = bookstore.searchBookByTitle("Gold");
+
+        assertEquals(1, foundBooks.size());
     }
 }
