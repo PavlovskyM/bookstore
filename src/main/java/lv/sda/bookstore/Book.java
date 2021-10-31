@@ -1,7 +1,6 @@
 package lv.sda.bookstore;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Book {
     private String title;
