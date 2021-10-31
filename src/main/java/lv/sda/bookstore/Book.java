@@ -1,6 +1,7 @@
 package lv.sda.bookstore;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Book {
     private String title;
@@ -20,6 +21,10 @@ public class Book {
         this.description = description;
         this.publisher = publisher;
         this.isbn = isbn;
+    }
+
+    public Book() {
+
     }
 
     public String getTitle() {

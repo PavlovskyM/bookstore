@@ -1,13 +1,11 @@
 package lv.sda.bookstore;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Application {
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
         Bookstore bookstore = new Bookstore();
 
         bookstore.addBook(new Book("Project Hail Mary", "Andy Weir", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135204"));
@@ -33,15 +31,16 @@ public class Application {
                System.out.println("Quitting application");
                break;
            }
+
+
            switch (input){
                case "1":
                    System.out.println("Searching for a book");
                    break;
                case "2":
                    System.out.println("Adding a book");
-                   bookstore.addBook(new Book("Hunger games", "Susan",
-                           LocalDate.of(1999, 1, 1),420, "very good", "ABC", "5790816153678"));
-                   bookstore.listBooks();
+                   Book book = addBook();
+                   bookstore.addBook(book);
                    break;
                case "3":
                    System.out.println("Removing a book");
@@ -54,5 +53,28 @@ public class Application {
                    System.out.println("Wrong input, please try again!");
            }
        }
+    }
+
+    public static Book addBook(){
+        Book book = new Book();
+        scanner.nextLine();
+        System.out.println("Enter title");
+        book.setTitle(scanner.nextLine());
+        System.out.println("Enter author");
+        book.setAuthor(scanner.nextLine());
+        System.out.println("Enter publishing year");
+        Integer year = Integer.valueOf(scanner.nextLine());
+        LocalDate publishingYear = LocalDate.of(year,1,1);
+        book.setPublishingYear(publishingYear);
+        System.out.println("Enter number of pages");
+        book.setPages(scanner.nextInt());
+        scanner.nextLine();
+        System.out.println("Enter the publisher");
+        book.setPublisher(scanner.nextLine());
+        System.out.println("Enter description of the book");
+        book.setDescription(scanner.nextLine());
+        System.out.println("Enter Isbn");
+        book.setIsbn(scanner.nextLine());
+        return book;
     }
 }
