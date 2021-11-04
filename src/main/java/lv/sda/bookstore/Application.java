@@ -35,15 +35,18 @@ public class Application {
 
            switch (input){
                case "1":
-                   System.out.println("Searching for a book");
+                   System.out.println("Search a book by the title");
+                   bookstore.searchByTitle();
                    break;
                case "2":
-                   System.out.println("Adding a book");
+                   System.out.println("Add a book");
                    Book book = addBook();
                    bookstore.addBook(book);
                    break;
                case "3":
-                   System.out.println("Removing a book");
+                   System.out.println("Remove a book");
+                   bookstore.removeBookByISBN();
+                   System.out.println("Book has been removed!");
                    break;
                case "4":
                    System.out.println("List of books:");
