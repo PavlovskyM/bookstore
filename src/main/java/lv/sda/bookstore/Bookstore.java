@@ -11,9 +11,9 @@ public class Bookstore {
         bookshelf.add(book);
     }
 
-    public void removeBook(String isbn) {
-
-        bookshelf.removeIf(book -> book.getIsbn().equals(isbn));
+    public boolean removeBook(String isbn) {
+        return bookshelf.removeIf(book -> book.getIsbn().equals(isbn));
+        
     }
     public void listBooks(){
 
@@ -42,11 +42,18 @@ public class Bookstore {
         searchBookByTitle(query);
     }
 
-    public void removeBookByISBN(){
+    public void removeBookByISBN() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter ISBN of a book you want to remove:");
         String query = scanner.nextLine();
-        removeBook(query);
+        boolean removed = removeBook(query); // query (lietotāja ievade)-> removeBook (metodei) -> removed (true/false atkarībā vai grāmata tika izdzēsta)
+        if(removed) {
+            System.out.println("Book has been removed!");
+        }else{
+            System.out.println("Book has not been removed!");
+        }
+
     }
+
 }
 
