@@ -1,6 +1,5 @@
 package lv.sda.bookstore;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,23 +19,19 @@ public class Bookstore {
         bookshelf.add(newBook);
     }
 
-
     public boolean removeBook(String isbn) {
         return bookshelf.removeIf(book -> book.getIsbn().equals(isbn));
 
     }
-
-    public void listBooks() {
+    public void listBooks(){
 
         bookshelf.forEach(System.out::println);
     }
-
-    public List<Book> getBookshelf() {
+    public List<Book> getBookshelf(){
 
         return bookshelf;
     }
-
-    public List<Book> searchBookByTitle(String query) {
+    public List<Book> searchBookByTitle(String query){
 
         List<Book> foundBooks = new ArrayList<>();
 
@@ -70,9 +65,9 @@ public class Bookstore {
         System.out.println("Please enter ISBN of a book you want to remove:");
         String query = scanner.nextLine();
         boolean removed = removeBook(query); // query (lietotāja ievade)-> removeBook (metodei) -> removed (true/false atkarībā vai grāmata tika izdzēsta)
-        if (removed) {
+        if(removed) {
             System.out.println("Book has been removed!");
-        } else {
+        }else{
             System.out.println("Book has not been removed!");
         }
 
