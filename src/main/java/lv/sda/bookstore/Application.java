@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Application {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         Bookstore bookstore = new Bookstore();
 
-        bookstore.addBook(new Book("Project Hail Mary", "Andy Weir", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135204"));
         bookstore.addBook(new Book("Klara and the Sun", "Kazuo Ishiguro", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593318171"));
         bookstore.addBook(new Book("Effortless", "Greg McKeown", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135648"));
         bookstore.addBook(new Book("Gold Diggers", "Sanjena Sathian", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9781984882035"));
@@ -35,7 +35,7 @@ public class Application {
 
            switch (input){
                case "1":
-                   System.out.println("Search a book by the title");
+                   System.out.println("Searching for a book by title");
                    bookstore.searchByTitle();
                    break;
                case "2":
@@ -46,7 +46,7 @@ public class Application {
                case "3":
                    System.out.println("Remove a book");
                    bookstore.removeBookByISBN();
-                   System.out.println("Book has been removed!");
+
                    break;
                case "4":
                    System.out.println("List of books:");
@@ -66,7 +66,7 @@ public class Application {
         System.out.println("Enter author");
         book.setAuthor(scanner.nextLine());
         System.out.println("Enter publishing year");
-        Integer year = Integer.valueOf(scanner.nextLine());
+        int year = Integer.parseInt(scanner.nextLine());
         LocalDate publishingYear = LocalDate.of(year,1,1);
         book.setPublishingYear(publishingYear);
         System.out.println("Enter number of pages");
@@ -80,4 +80,6 @@ public class Application {
         book.setIsbn(scanner.nextLine());
         return book;
     }
+
+
 }
