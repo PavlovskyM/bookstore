@@ -2,6 +2,7 @@ package lv.sda.bookstore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Bookstore {
@@ -9,8 +10,7 @@ public class Bookstore {
 
     public void addBook(Book newBook) {
         List<Book> foundBooks = new ArrayList<>();
-
-        for (Book book : bookshelf) {
+       for (Book book : bookshelf) {
             if (book.getIsbn().equals(newBook.getIsbn())) {
                 System.out.println("Book already exists in the database.");
                 return;
@@ -61,17 +61,21 @@ public class Bookstore {
 
 
     public void removeBookByISBN() {
+        if(books.isEmpty()){
+            System.out.println("No books found.");
+        }
+    }
+
+    public void removeBookByISBN(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter ISBN of a book you want to remove:");
         String query = scanner.nextLine();
-        boolean removed = removeBook(query); // query (lietotāja ievade)-> removeBook (metodei) -> removed (true/false atkarībā vai grāmata tika izdzēsta)
-        if(removed) {
+        boolean removed = removeBook(query);
+        if(removed){
             System.out.println("Book has been removed!");
         }else{
-            System.out.println("Book has not been removed!");
+            System.out.println("Book not found");
         }
-
     }
-
 }
 
