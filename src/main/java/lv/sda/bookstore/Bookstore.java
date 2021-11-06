@@ -20,7 +20,6 @@ public class Bookstore {
 
     public boolean removeBook(String isbn) {
         return bookshelf.removeIf(book -> book.getIsbn().equals(isbn));
-
     }
     public void listBooks(){
 
