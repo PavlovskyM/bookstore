@@ -27,7 +27,7 @@ public class Application {
            System.out.println("4. Book list");
            System.out.println("To quit press q");
            String input = scanner.next();
-           if(input.equals("q")) {
+           if(input.equalsIgnoreCase("q")) {
                System.out.println("Quitting application");
                break;
            }
@@ -46,7 +46,6 @@ public class Application {
                case "3":
                    System.out.println("Remove a book");
                    bookstore.removeBookByISBN();
-                   System.out.println("Book has been removed!");
                    break;
                case "4":
                    System.out.println("List of books:");
