@@ -9,7 +9,7 @@ public class Bookstore {
     private List<Book> bookshelf = new ArrayList<>();
 
     public void addBook(Book newBook) {
-        for (Book book : bookshelf) {
+       for (Book book : bookshelf) {
             if (book.getIsbn().equals(newBook.getIsbn())) {
                 System.out.println("Book already exists in the database.");
                 return;
@@ -20,10 +20,7 @@ public class Bookstore {
 
     public boolean removeBook(String isbn) {
         return bookshelf.removeIf(book -> book.getIsbn().equals(isbn));
-    }
-    public void listBooks(){
 
-        bookshelf.forEach(System.out::println);
     }
     public List<Book> getBookshelf(){
 
@@ -33,21 +30,23 @@ public class Bookstore {
 
         List<Book> foundBooks = new ArrayList<>();
 
-        for (Book book : bookshelf){
-            if(book.getTitle().toLowerCase().contains(query)){
+        for (Book book : bookshelf) {
+            if (book.getTitle().toLowerCase().contains(query)) {
                 System.out.println(book.getTitle());
                 foundBooks.add(book);
             }
         }
         return foundBooks;
     }
+
     public void searchByTitle() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter book`s title");
         String query = scan.nextLine();
         List<Book> books = searchBookByTitle(query.toLowerCase());
-        if(books.isEmpty()){
+        if (books.isEmpty()) {
             System.out.println("No books found.");
+
         }
     }
 

@@ -1,13 +1,14 @@
 package lv.sda.bookstore;
+
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Application {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
         Bookstore bookstore = new Bookstore();
-
         bookstore.addBook(new Book("Project Hail Mary", "Andy Weir", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135204"));
         bookstore.addBook(new Book("Klara and the Sun", "Kazuo Ishiguro", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593318171"));
         bookstore.addBook(new Book("Effortless", "Greg McKeown", LocalDate.of(2021, 1,1), 320, "New York times bestseller", "Ballantine Books", "9780593135648"));
@@ -57,7 +58,7 @@ public class Application {
        }
     }
 
-    public static Book addBook(){
+    public static Book addBook() {
         Book book = new Book();
         scanner.nextLine();
         System.out.println("Enter title");
@@ -65,18 +66,64 @@ public class Application {
         System.out.println("Enter author");
         book.setAuthor(scanner.nextLine());
         System.out.println("Enter publishing year");
-        Integer year = Integer.valueOf(scanner.nextLine());
-        LocalDate publishingYear = LocalDate.of(year,1,1);
-        book.setPublishingYear(publishingYear);
+        book.setPublishingYear(inputYear());
         System.out.println("Enter number of pages");
-        book.setPages(scanner.nextInt());
-        scanner.nextLine();
+        book.setPages(inputPages());
         System.out.println("Enter the publisher");
         book.setPublisher(scanner.nextLine());
         System.out.println("Enter description of the book");
         book.setDescription(scanner.nextLine());
         System.out.println("Enter Isbn");
-        book.setIsbn(scanner.nextLine());
+        book.setIsbn(inputIsbnNumber());
         return book;
+    }
+
+    public static LocalDate inputYear() {
+        while (true) {
+            int year = inputNumber();
+            LocalDate publishingYear = LocalDate.of(year, 1, 1);
+
+            if (publishingYear.isBefore(LocalDate.now()) && publishingYear.isAfter(LocalDate.of(1, 1, 1))) {
+                return LocalDate.of(year, 1, 1);
+            } else {
+                System.out.println("Invalid year, try again.");
+            }
+        }
+    }
+
+    public static Integer inputNumber() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Not a number, try again.");
+            }
+        }
+    }
+
+    public static Integer inputPages() {
+
+        int pages = inputNumber();
+
+        while (pages <= 0) {
+            System.out.println("Please enter positive number.");
+            pages = inputNumber();
+        }
+      return pages;
+    }
+
+    public static String inputIsbnNumber() {
+
+        while (true) {
+            String number = scanner.nextLine();
+            if (Pattern.matches("[0-9]+", number) && (number.length() == 13 || number.length() == 10)) {
+                System.out.println(number);
+                return number;
+            } else {
+                System.out.println("Invalid number, try again.");
+
+
+            }
+        }
     }
 }
