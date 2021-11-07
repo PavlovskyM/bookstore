@@ -9,7 +9,6 @@ public class Bookstore {
     private List<Book> bookshelf = new ArrayList<>();
 
     public void addBook(Book newBook) {
-        List<Book> foundBooks = new ArrayList<>();
        for (Book book : bookshelf) {
             if (book.getIsbn().equals(newBook.getIsbn())) {
                 System.out.println("Book already exists in the database.");
@@ -22,10 +21,6 @@ public class Bookstore {
     public boolean removeBook(String isbn) {
         return bookshelf.removeIf(book -> book.getIsbn().equals(isbn));
 
-    }
-    public void listBooks(){
-
-        bookshelf.forEach(System.out::println);
     }
     public List<Book> getBookshelf(){
 
@@ -52,17 +47,6 @@ public class Bookstore {
         if (books.isEmpty()) {
             System.out.println("No books found.");
 
-        }
-    }
-
-
-
-
-
-
-    public void removeBookByISBN() {
-        if(books.isEmpty()){
-            System.out.println("No books found.");
         }
     }
 
